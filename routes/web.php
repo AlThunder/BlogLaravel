@@ -21,4 +21,16 @@ Route::group(['namespace' => 'App\Http\Controllers\Blog', 'prefix' => 'blog'], f
     Route::resource('posts', 'PostController')->names('blog.posts');
 });
 
-Route::resource('rest', 'App\Http\Controllers\RestTestController')->names('restTest');
+//Route::resource('rest', 'App\Http\Controllers\RestTestController')->names('restTest');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
