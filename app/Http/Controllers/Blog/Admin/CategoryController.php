@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Blog\Admin;
 
+use App\Http\Requests\BlogCategoryUpdateRequest;
 use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 
@@ -47,8 +48,28 @@ class CategoryController extends BaseController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(BlogCategoryUpdateRequest $request, string $id)
     {
+        /*$rules = [
+            'title' => 'required|min:5|max:200',
+            'slug' => 'max:200',
+            'description' => 'string|max:500|min:3',
+            'parent_id' => 'required|integer|exists:blog_categories,id',
+        ];*/
+
+        /*$validatedData = $this->validate($request, $rules);
+
+        $validatedData = $request->validate($rules);
+
+        $validator = \Validator::make($request->all(), $rules);
+        $validatedData[] = $validator->passes();
+        $validatedData[] = $validator->validate();
+        $validatedData[] = $validator->valid();
+        $validatedData[] = $validator->failed();
+        $validatedData[] = $validator->errors();
+        $validatedData[] = $validator->fails();
+        dd($validatedData);*/
+
         $item = BlogCategory::find($id);
         if(empty($item)) {
             return back()
