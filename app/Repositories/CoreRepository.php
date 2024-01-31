@@ -31,7 +31,7 @@ abstract class CoreRepository
     /**
      * @return mixed
      */
-    abstract protected function getModelClass(): mixed;
+    abstract protected function getModelClass();
 
     /**
      * @return Model|\Illuminate\Foundation\Application|mixed

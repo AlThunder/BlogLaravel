@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// Очистка кеша
+/*Artisan::call('cache:clear');
+Artisan::call('config:cache');
+Artisan::call('view:clear');
+Artisan::call('route:clear');
+Artisan::call('backup:clean');*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -36,6 +42,10 @@ Route::group($groupData, function () {
     Route::resource('categories', 'CategoryController')
         ->only($methods)
         ->names('blog.admin.categories');
+    // BlogPosts
+    Route::resource('posts', 'PostController')
+        ->except(['show'])
+        ->names('blog.admin.posts');
 });
 //<
 
