@@ -28,7 +28,22 @@
                                     </a>
                                 </td>
                                 <td @if(in_array($item->parent_id, [0, 1])) style="color:#ccc" @endif>
-                                    {{ $item->parent_id }} {{-- $item->parentCategory->title --}}
+                                    {{--{{ $item->parentCategory->title ?? '?' }}--}}
+
+                                    {{--{{ optional($item->parentCategory)->title }}--}}
+
+                                    {{--{{
+                                        $item->parentCategory->title
+                                            ?? ($item->id === \App\Models\BlogCategory::ROOT
+                                                ? 'Корень'
+                                                : '???')
+                                    }}--}}
+
+                                    {{-- Вызовы аксессора, вариант написания называется snake case - parent_title--}}
+                                    {{--{{ $item->parent_title }}--}}
+
+                                    {{-- вариант написания называется camel case - parentTitle--}}
+                                    {{ $item->parentTitle }}
                                 </td>
                             </tr>
                         @endforeach
