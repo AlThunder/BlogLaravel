@@ -38,7 +38,7 @@ class CategoryController extends BaseController
     /**
      * Show the form for creating a new resource.
      */
-    public function create():\Illuminate\Http\Response
+    public function create()
     {
         $item = new BlogCategory();
         $categoryList
@@ -50,13 +50,18 @@ class CategoryController extends BaseController
 
     /**
      * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     *
+     * @return \Illuminate\Http\Response
      */
     public function store(BlogCategoryCreateRequest $request)
     {
         $data = $request->input();
-        if (empty($data['slug'])) {
+        /* // Ушло в обсервер
+         * if (empty($data['slug'])) {
             $data['slug'] = Str::of($data['title'])->slug();
-        }
+        }*/
 
         // Создаст объект, но не добавит в БД
         /*$item = new BlogCategory($data);
@@ -95,6 +100,11 @@ class CategoryController extends BaseController
 
     /**
      * Update the specified resource in storage.
+     *
+     * @param BlogCategoryUpdateRequest $request
+     * @param int $id
+     *
+     * @return \Illuminate\Http\Response
      */
     public function update(BlogCategoryUpdateRequest $request, string $id)
     {
@@ -128,9 +138,11 @@ class CategoryController extends BaseController
         }
 
         $data = $request->all();
-        if (empty($data['slug'])) {
+        /*
+         * // Ушло в обсервер
+         * if (empty($data['slug'])) {
             $data['slug'] = Str::of($data['title'])->slug();
-        }
+        }*/
         /*$result = $item
             ->fill($data)
             ->save();*/
