@@ -13,11 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // Очистка кеша
-/*Artisan::call('cache:clear');
-Artisan::call('config:cache');
-Artisan::call('view:clear');
-Artisan::call('route:clear');
-Artisan::call('backup:clean');*/
+/*\Artisan::call('cache:clear');
+\Artisan::call('config:cache');
+\Artisan::call('view:clear');
+\Artisan::call('route:clear');
+//\Artisan::call('backup:clean'); // не работает - нет такой команды
+//php artisan cache:clear
+//php artisan event:clear
+//php artisan config:clear
+//php artisan view:clear
+//php artisan route:clear
+//php artisan backup:clear*/
+
 
 Route::get('/', function () {
     return view('welcome');

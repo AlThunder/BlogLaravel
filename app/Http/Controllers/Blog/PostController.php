@@ -13,7 +13,7 @@ class PostController extends BaseController
     public function index()
     {
         $items = BlogPost::all();
-
+        //\Artisan::call('db:seed --class=EmployeesTableSeeder');
         return view('blog.posts.index', compact('items'));
     }
 
