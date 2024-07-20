@@ -2,7 +2,10 @@
 
 namespace App\Repositories;
 
+use App\Http\Requests\BlogPostFilterRequest;
 use App\Models\BlogPost as Model;
+use App\Http\Filters\BlogPostFilter;
+use App\Models\Traits\Filterable;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 /**
@@ -12,6 +15,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
  */
 class BlogPostRepository extends CoreRepository
 {
+    use Filterable;
     /**
      * @return string
      */
@@ -26,7 +30,7 @@ class BlogPostRepository extends CoreRepository
      *
      * @return LengthAwarePaginator
      */
-    public function getAllWithPaginate()
+    public function getAllWithPaginate(BlogPostFilterRequest $request)
     {
         $columns = [
             'id',
@@ -37,9 +41,11 @@ class BlogPostRepository extends CoreRepository
             'user_id',
             'category_id',
         ];
+        $filter = app()->make(BlogPostFilter::class, ['queryParams'=> array_filter($request->validated())]);
 
         $result = $this
             ->startConditions()
+            ->filter($filter) // добавление фильтра (пока только через строку запроса)
             ->select($columns)
             ->orderBy('id', 'DESC')
             //->with(['category', 'user'])

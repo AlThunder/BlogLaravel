@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Blog\Admin;
 
 use App\Http\Requests\BlogPostCreateRequest;
+use App\Http\Requests\BlogPostFilterRequest;
 use App\Http\Requests\BlogPostUpdateRequest;
 use App\Jobs\BlogPostAfterCreateJob;
 use App\Jobs\BlogPostAfterDeleteJob;
@@ -38,9 +39,9 @@ class PostController extends BaseController
         $this->blogCategoryRepository = app(BlogCategoryRepository::class);
     }
 
-    public function index()
+    public function index(BlogPostFilterRequest $request)
     {
-        $paginator = $this->blogPostRepository->getAllWithPaginate();
+        $paginator = $this->blogPostRepository->getAllWithPaginate($request);
 
         return view('blog.admin.posts.index', compact('paginator'));
     }
