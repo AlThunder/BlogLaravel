@@ -49,6 +49,11 @@
                                 </li>
                             @endif
                         @else
+                            @can('view', auth()->user())
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('blog.admin.posts.index') }}">Admin</a>
+                                </li>
+                            @endcan
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}

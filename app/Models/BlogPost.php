@@ -26,7 +26,7 @@ class BlogPost extends Model
 {
     use SoftDeletes, HasFactory, Filterable;
 
-    const UNKNOWN_USER = 1;
+    const UNKNOWN_USER = 1; //TODO: unknown_user убрать костыль при аутентификации
 
     protected $fillable
         = [

@@ -70,7 +70,8 @@ class BlogPostObserver
      */
     private function setUser(BlogPost $blogPost)
     {
-        $blogPost->user_id = auth()->id() ?? BlogPost::UNKNOWN_USER;
+        if(!$blogPost->user_id)
+        $blogPost->user_id = auth()->id() ?? BlogPost::UNKNOWN_USER; // TODO: unknown_user убрать костыль при аутентификации
     }
 
     /**

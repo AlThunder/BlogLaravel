@@ -12,25 +12,20 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-// Очистка кеша
-/*\Artisan::call('cache:clear');
-\Artisan::call('config:cache');
-\Artisan::call('view:clear');
-\Artisan::call('route:clear');
-//\Artisan::call('backup:clean'); // не работает - нет такой команды
-//php artisan cache:clear
-//php artisan event:clear
-//php artisan config:clear
-//php artisan view:clear
-//php artisan route:clear
-//php artisan backup:clear*/
 
-
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
+Route::get('/clear', function() {
+    Artisan::call('cache:clear');
+    Artisan::call('config:cache');
+    Artisan::call('view:clear');
+    Artisan::call('route:clear');
+    //Artisan::call('backup:clean');
+    return "Кэш очищен.";});
 
 Auth::routes();
+Route::get('/', [App\Http\Controllers\Blog\PostController::class, 'index'])->name('blog.posts');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'digging_deeper'], function () {
@@ -51,7 +46,8 @@ Route::group(['namespace' => 'App\Http\Controllers\Blog', 'prefix' => 'blog'], f
 //> Админка Блога
 $groupData = [
     'namespace' => 'App\Http\Controllers\Blog\Admin',
-    'prefix' => 'admin/blog'
+    'prefix' => 'admin/blog',
+    'middleware' => 'admin',
 ];
 Route::group($groupData, function () {
     // BlogCategory

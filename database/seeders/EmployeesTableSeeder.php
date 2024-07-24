@@ -12,7 +12,7 @@ class EmployeesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $count_rec = 300000;
+        $count_rec = 30;
         $employees = [];
 
         for ($i = 1; $i <= $count_rec; $i++) {

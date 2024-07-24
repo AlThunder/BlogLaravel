@@ -24,7 +24,7 @@ class BlogPostFactory extends Factory
 
         return [
             'category_id' => rand(1, 11),
-            'user_id' => (rand(1, 5) == 5) ? 1 : 2,
+            'user_id' => rand(1, 10),
             'title' => $title,
             'slug' => \Str::of($title)->slug(),
             'excerpt' => fake()->text(rand(40, 400)),

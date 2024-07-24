@@ -12,6 +12,7 @@ class PostController extends BaseController
      */
     public function index()
     {
+        //$this->authorize('view', auth()->user()); // пример работы policy
         $items = BlogPost::all();
         //\Artisan::call('db:seed --class=EmployeesTableSeeder');
         return view('blog.posts.index', compact('items'));
